@@ -1,5 +1,6 @@
 //DOM Objects
 // DOM Objects
+document.addEventListener('DOMContentLoaded',() => {
 const mainScreen = document.querySelector('.main-screen');
 const pokeName = document.querySelector('.poke-name');
 const pokeId = document.querySelector('.poke-id');
@@ -12,7 +13,6 @@ const pokeHeight = document.querySelector('.poke-height');
 const pokeListItems = document.querySelectorAll('.list-item');
 const leftButton = document.querySelector('.left-button');
 const rightButton = document.querySelector('.right-button');
-
 
 // constants and variables
 const TYPES = [
@@ -44,7 +44,8 @@ const fetchPokeList = url => {
       const { results, previous, next } = data;
       prevUrl = previous;
       nextUrl = next;
-            // this section lets us loop through the 20 pokemon on the right screen
+            // this section lets us loop through the data of the 20 pokemon 
+            //on the right screen
       for (let i = 0; i < pokeListItems.length ; i++) {
         const pokeListItem = pokeListItems[i];
         const resultData = results[i];
@@ -88,7 +89,8 @@ const fetchPokeData = id => {
       pokeBackImage.src = data['sprites']['back_default'] || '';
     });
 };
-
+    //this section will handle switching between the pokemon list 
+    //on the right side of the screen
 const handleLeftButtonClick = () => {
   if (prevUrl) {
     fetchPokeList(prevUrl);
@@ -122,3 +124,4 @@ for (const pokeListItem of pokeListItems) {
 
 // initialize App
 fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20');
+})
